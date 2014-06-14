@@ -1,34 +1,13 @@
-ArduNoo
-=======
-
-Noolite library for arduino. Works with modules like MT1132.
-
-Warning! Not supported:
-* Module selection (SE pin)
-* LED controller commands
-
-If you want to add them - pullrequest me ;) It is not so hard, but I am lazy...
-
-Installation
-------------
-
-Unpack this into ~/sketchbooks/libraries (you must get catalog ~/sketchbooks/libraries/ardunoo).
-Restart your Arduino IDE. That's all!
-
-Usage: 
-------
-
+/*
 Let you connect MT1132 to your arduino like this:
-````
-+---------+               +---------+
-| MT1132  +-(RX)-----(11)-+ Arduino |
-|         +-(TX)-----(10)-+         |
-|         |               |         |
-````
 
-Use sketch like this:
++---------+               +------------+
+| MT1132  +-(RX)-----(11)-+ Tx Arduino |
+|         +-(TX)-----(10)-+ Rx         |
+|         |               |            |
 
-````
+*/
+
 #include <ardunoo.h>
 
 #define RXpin 10
@@ -90,4 +69,3 @@ void loop(){
     break;
   }
 }
-````
