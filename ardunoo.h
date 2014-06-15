@@ -23,7 +23,7 @@
 class ArduNoo {
 
   byte chnl;
-  SoftwareSerial serial;
+  SoftwareSerial ns;
 
 public:
   ArduNoo(byte rx, byte tx, byte ch=0);
@@ -39,7 +39,7 @@ public:
   void run_scene(byte ch=-1);
   void record_scene(byte ch=-1);
 
-  void command(byte channel, byte command);
+  bool command(byte channel, byte command);
 };
 
 #endif

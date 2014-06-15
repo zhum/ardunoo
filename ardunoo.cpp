@@ -1,7 +1,8 @@
 #include <ardunoo.h>
 
-ArduNoo::ArduNoo(byte rx, byte tx, byte ch): serial(rx,tx){
+ArduNoo::ArduNoo(byte rx, byte tx, byte ch): ns(rx,tx){
   chnl=ch;
+  ns.begin(9600);
 }
 
 byte ArduNoo::channel(byte ch){
@@ -70,11 +71,11 @@ void ArduNoo::record_scene(byte ch){
   command(ch, 8);
 }
 
-void ArduNoo::command(byte chnl, byte command){
-  static byte i, buf[12]={85,B01010000,0,0,0,0,0,0,0,0,0,170};
+bool ArduNoo::command(byte chnl, byte command){
+  static byte i, r, buf[12]={85,B01010000,0,0,0,0,0,0,0,0,0,170};
   int sum = 0;
 
-  memset(buf+2,0,9); /* clear the biody */
+  memset(buf+2,0,9); /* clear message body */
 
   buf[2] = command;
   buf[5] = chnl;
@@ -86,6 +87,14 @@ void ArduNoo::command(byte chnl, byte command){
   buf[11] = 170;
 
   for(i=0; i<12; ++i){
-    serial.write(buf[i]);
+    ns.write(buf[i]);
   }
+  /* debug code
+  for(i=0;i<4;++i){
+    while(!ns.available()) delay(10);
+    r=ns.read();
+    Serial.print(r);
+  }
+  */
+  return true;
 }
