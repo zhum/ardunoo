@@ -12,14 +12,21 @@
 #ifndef ARDUNOO_H
 #define ARDUNOO_H
 
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
 #include <SoftwareSerial.h>
 
 class ArduNoo {
 
-  byte channel;
+  byte chnl;
   SoftwareSerial serial;
 
-  ArduNoo::ArduNoo(byte rx, byte tx, byte ch=0);
+public:
+  ArduNoo(byte rx, byte tx, byte ch=0);
   byte channel(byte ch=-1);
   void on(byte ch=-1);
   void off(byte ch=-1);
@@ -32,8 +39,7 @@ class ArduNoo {
   void run_scene(byte ch=-1);
   void record_scene(byte ch=-1);
 
-  // not private, but...
-  void ArduNoo::command(byte channel, byte command);
-}
+  void command(byte channel, byte command);
+};
 
 #endif

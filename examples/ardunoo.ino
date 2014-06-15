@@ -8,6 +8,7 @@ Let you connect MT1132 to your arduino like this:
 
 */
 
+#include <SoftwareSerial.h>
 #include <ardunoo.h>
 
 #define RXpin 10
