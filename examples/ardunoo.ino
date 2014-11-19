@@ -14,10 +14,10 @@ Let you connect MT1132 to your arduino like this:
 #define RXpin 10
 #define TXpin 11
 
-noo=ArduNoo(RXpin,TXpin);
+ArduNoo noo(RXpin,TXpin);
 
 void setup(){
-  Serial.setup(9600);
+  Serial.begin(9600);
   noo.channel(5);     // Let's command 5-th channel
   // ...
 }
